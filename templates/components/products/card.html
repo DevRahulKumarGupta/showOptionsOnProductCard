@@ -1,5 +1,5 @@
 <article
-    class="card
+    class="card test
     {{#if alternate}} card--alternate{{/if}}"
     data-test="card-{{id}}"
     data-event-type="{{event}}"
@@ -106,6 +106,7 @@
         </figcaption>
     </figure>
     <div class="card-body">
+        
         {{#and rating show_rating}}
             <p class="card-text" data-test-info-type="productRating">
                 <span class="rating--small">
@@ -116,6 +117,9 @@
         {{#if brand.name}}
             <p class="card-text" data-test-info-type="brandName">{{brand.name}}</p>
         {{/if}}
+
+<div class="querryClass product-{{id}}" data-product-swatches="{{id}}"></div>
+
         <h3 class="card-title">
             <a aria-label="{{> components/products/product-info}}"
                href="{{url}}"

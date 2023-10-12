@@ -1,0 +1,46 @@
+{{inject 'outOfStockDefaultMessage' (lang 'products.out_of_stock_default_message')}}
+
+<div class="productView"
+    data-event-type="product"
+    data-entity-id="{{product.id}}"
+    data-name="{{product.title}}"
+    data-product-category="
+    {{#each product.category}}
+        {{#if @last}}{{this}}{{else}}{{this}}, {{/if}}
+    {{/each}}"
+    data-product-brand="{{product.brand.name}}"
+    data-product-price="
+    {{#or customer (unless settings.hide_price_from_guests)}}
+        {{#if product.price.with_tax}}
+            {{product.price.with_tax.value}}
+        {{else}}
+            {{product.price.without_tax.value}}
+        {{/if}}
+    {{else}}
+        {{lang 'common.login_for_pricing'}}
+    {{/or}}"
+    data-product-variant="single-product-option">
+
+    <section class="" style="margin: 0.3rem;">
+        <div class="productView-options">
+            {{#if product.release_date }}
+                <p>{{product.release_date}}</p>
+            {{/if}}
+            <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
+                  data-cart-item-add>
+
+                <div data-product-option-change style="">
+                    {{inject 'showSwatchNames' theme_settings.show_product_swatch_names}}
+                    {{#each product.options}}
+                        {{{dynamicComponent 'components/products/testingoptions'}}}
+                    {{/each}}
+                </div>
+            </form>
+
+        </div>
+    </section>
+
+
+</div>
+
+
